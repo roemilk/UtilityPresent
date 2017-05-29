@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="color_trans">#00000000</color>
+    <color name="color_white">#ffffff</color>
+    <color name="color_black">#000000</color>
+
+    <color name="color_333333">#333333</color>
+    <color name="color_16afc7">#16afc7</color>
+    <color name="color_d0eff4">#d0eff4</color>
+    <color name="color_45bfd2">#45bfd2</color>
+    <color name="color_a7d9e4">#a7d9e4</color>
+    <color name="color_666666">#666666</color>
+    <color name="color_dcdcdc">#dcdcdc</color>
+    <color name="color_f2f2f2">#f2f2f2</color>
+    <color name="color_E9E9E9">#E9E9E9</color>
+    <color name="color_8bd7e4">#8bd7e4</color>
+
+    <color name="color_999999">#999999</color>
+    <drawable name="mypage_bg_on">#ffffff</drawable>
+    <drawable name="mypage_bg_off">#45bfd2</drawable>
+
+    <drawable name="mypage_text_on">#45bfd2</drawable>
+    <drawable name="mypage_text_off">#ffffff</drawable>
+    <drawable name="bg">#ffffff</drawable>
+
+    <color name="stroke_color">#8cf437</color>
+    <color name="transparent">#00FFFFFF</color>
+    <color name="colorWhite">#ffffff</color>
+
+    <color name="crop__button_bar">#f3f3f3</color>
+    <color name="crop__button_text">#666666</color>
+    <color name="crop__selector_pressed">#1a000000</color>
+    <color name="crop__selector_focused">#77000000</color>
+</resources>
