@@ -1,29 +1,36 @@
 package redpig.utilitypresent;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
-import redpig.utility.network.Ping;
-
-public class MainActivity extends AppCompatActivity implements Ping.OnScanPingCheckListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private final String TAG = "TEST";
 
-    private TextView mResultTextView, mProgressTextView = null;
-    private StringBuffer mStringBuffer = new StringBuffer();
+    private EditText mDbNameEditText, mTbEditText;
+    private Button mCreateDbButton, mCreateTbButton;
+    private TextView mResultTextView;
+
+    SQLiteDatabase db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mResultTextView = (TextView)findViewById(R.id.textView);
-        mProgressTextView = (TextView)findViewById(R.id.scaninngTextView);
+        mDbNameEditText = (EditText)findViewById(R.id.editText);
+        mTbEditText = (EditText)findViewById(R.id.editText2);
+        mCreateDbButton = (Button)findViewById(R.id.button);
+        mCreateTbButton = (Button)findViewById(R.id.button2);
+        mResultTextView = (TextView)findViewById(R.id.result_textView);
 
-        Ping ping = new Ping("211.109.235.40");
-        ping.setOnScanPingCheckListener(this);
-        ping.scanAllPing();
-
+        mCreateDbButton.setOnClickListener(this);
+        mCreateTbButton.setOnClickListener(this);
 
 //        Fragment fragment = new SettingsScreen();
 //        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
@@ -36,25 +43,33 @@ public class MainActivity extends AppCompatActivity implements Ping.OnScanPingCh
 //
 //        }
 
+
+
+    }
+
+    private void createDatabase(String name){
+
+    }
+
+    private void createTable(){
+
     }
 
     @Override
-    public void onSuccessPingCheck(final String ipAddress) {
-        Log.d(TAG, "onSuccessPingCheck : " + ipAddress);
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                mStringBuffer.append(ipAddress + "\n");
-                mResultTextView.setText(mStringBuffer.toString());
-            }
-        });
+    public void onClick(View v) {
+
+        switch (v.getId()){
+            case R.id.button :
+                String dbName = mDbNameEditText.getText().toString().trim();
+
+                break;
+            case R.id.button2 :
+
+                break;
+        }
+
     }
 
-    @Override
-    public void onCompletePingCheck() {
-        Log.d(TAG, "onCompletePingCheck..");
-        mProgressTextView.setText("스캔이 완료되었습니다..");
-    }
 
     public static class SettingsScreen extends PreferenceFragment{
         @Override
