@@ -9,6 +9,7 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
+import android.content.res.Configuration;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.telephony.TelephonyManager;
@@ -167,5 +168,27 @@ public class OSUtils {
         TelephonyManager t = (TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);
         String phoneNumber = t.getLine1Number();
         return phoneNumber;
+    }
+
+    /**
+     *
+     * 요약 : 현재 디바이스의 스크린사이즈를 리턴한다.
+     * @param context
+     * @return
+     */
+    public static int getDeviceScreenSize(Context context) {
+        int screenSizeType = (context.getResources().getConfiguration().screenLayout &
+                Configuration.SCREENLAYOUT_SIZE_MASK);
+        if(screenSizeType == Configuration.SCREENLAYOUT_SIZE_XLARGE) {
+            // 매우 큰 화면 사이즈, 10인치 이상 태블릿 : 갤럭시탭 10.1, 갤럭시노트10.1, 기타 등등.
+        }
+        else if(screenSizeType == Configuration.SCREENLAYOUT_SIZE_LARGE) {
+            // 큰 화면 사이즈, 약 7인치 태블릿 : 넥서스7, 갤탭, 기타 등등.;
+        }
+        else/* if(screenSizeType == Configuration.SCREENLAYOUT_SIZE_NORMAL ||
+				screenSizeType == Configuration.SCREENLAYOUT_SIZE_SMALL) */ {
+            // 태블릿이아니다(폰) : 갤럭시노트, 갤럭시 S, 베가, 옵티머스시리즈기타폰들.
+        }
+        return screenSizeType;
     }
 }

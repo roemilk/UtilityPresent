@@ -7,6 +7,8 @@ import android.net.NetworkInfo;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -98,5 +100,21 @@ public class NetworkUtils {
             }
         }
         return null;
+    }
+
+    /**
+     *
+     * 요약 : 다운로드 할 url 파일의 전체 사이즈를 리턴
+     * @param url
+     * @return int
+     */
+    public static int getDownloadFileFullSize(String url){
+        int size = 0;
+        try {
+            URLConnection urlFileSize = new URL(url).openConnection();
+            urlFileSize.connect();
+            size = urlFileSize.getContentLength();
+        }catch(Exception e) {}
+        return size;
     }
 }
