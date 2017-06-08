@@ -15,7 +15,14 @@ public class MagicPacket {
 
     public static final int PORT = 9;    //  UDP 포트
 
-    public static void sendMagicPacket(String ipAddress, String macAddress){
+    /**
+     * 해당 IP와 MAC address로 MagicPacket를 전송한다.
+     * 성공 실패는 boolean으로 리턴한다.
+     * @param ipAddress 대상 IP
+     * @param macAddress 대상 MAC address
+     * @return
+     */
+    public static boolean sendMagicPacket(String ipAddress, String macAddress){
         String macStr = macAddress;
 
         try {
@@ -36,10 +43,11 @@ public class MagicPacket {
             socket.close();
 
             Log.d(TAG, "Magic Packet send Success...");
+            return true;
         }
         catch (Exception e) {
             Log.d(TAG, "Magic Packet send Failed...");
-            System.exit(1);
+            return false;
         }
     }
 
@@ -48,6 +56,7 @@ public class MagicPacket {
         String[] hex = macStr.split("(\\:|\\-)");
 
         if (hex.length != 6) {
+            Log.d(TAG, "Invalid MAC address..");
             throw new IllegalArgumentException("Invalid MAC address.");
         }
         try {
@@ -56,6 +65,7 @@ public class MagicPacket {
             }
         }
         catch (NumberFormatException e) {
+            Log.d(TAG, "Invalid hex digit in MAC address..");
             throw new IllegalArgumentException("Invalid hex digit in MAC address.");
         }
         return bytes;

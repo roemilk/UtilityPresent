@@ -5,8 +5,8 @@ publish {
     userOrg = 'redpig'
     groupId = 'redpig.utilitypresent'
     artifactId = 'Utility-Present'
-    publishVersion = '0.1.8'
-    desc = 'Hello. Friends! This is my Utility Present. Thank you.'
+    publishVersion = '0.2.2'
+    desc = 'MagicPacket Exception Log add.. boolean return type add..'
     website = 'https://bintray.com/redpig/maven/redpig-Utility'
 }
 
