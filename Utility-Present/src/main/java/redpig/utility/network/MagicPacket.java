@@ -13,8 +13,12 @@ import java.net.InetAddress;
 public class MagicPacket {
     private static final String TAG = "MagicPacket";
 
-    public static final int PORT = 9;    //  UDP 포트
+    public interface OnMagicPacketCallbackListener{
+        void onSuccessSendingMagicPacket();
+        void onFailedSendingMagicPacket(Exception exception);
+    }
 
+    public static final int PORT = 9;    //  UDP 포트
     /**
      * 해당 IP와 MAC address로 MagicPacket를 전송한다.
      * 성공 실패는 boolean으로 리턴한다.
@@ -22,33 +26,37 @@ public class MagicPacket {
      * @param macAddress 대상 MAC address
      * @return
      */
-    public static boolean sendMagicPacket(String ipAddress, String macAddress){
-        String macStr = macAddress;
+    public static void sendMagicPacket(final String ipAddress, String macAddress, final OnMagicPacketCallbackListener listener){
+        final String macStr = macAddress;
 
-        try {
-            byte[] macBytes = getMacBytes(macStr);
-            byte[] bytes = new byte[6 + 16 * macBytes.length];
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    byte[] macBytes = getMacBytes(macStr);
+                    byte[] bytes = new byte[6 + 16 * macBytes.length];
 
-            for (int i = 0; i < 6; i++) {
-                bytes[i] = (byte) 0xff;
+                    for (int i = 0; i < 6; i++) {
+                        bytes[i] = (byte) 0xff;
+                    }
+                    for (int i = 6; i < bytes.length; i += macBytes.length) {
+                        System.arraycopy(macBytes, 0, bytes, i, macBytes.length);
+                    }
+
+                    InetAddress address = InetAddress.getByName(ipAddress);
+                    DatagramPacket packet = new DatagramPacket(bytes, bytes.length, address, PORT);
+                    DatagramSocket socket = new DatagramSocket();
+                    socket.send(packet);
+                    socket.close();
+                    Log.d(TAG, "Magic Packet send Success...");
+                    listener.onSuccessSendingMagicPacket();
+                }
+                catch (Exception e) {
+                    Log.d(TAG, "Magic Packet send Failed... " + e.toString());
+                    listener.onFailedSendingMagicPacket(e);
+                }
             }
-            for (int i = 6; i < bytes.length; i += macBytes.length) {
-                System.arraycopy(macBytes, 0, bytes, i, macBytes.length);
-            }
-
-            InetAddress address = InetAddress.getByName(ipAddress);
-            DatagramPacket packet = new DatagramPacket(bytes, bytes.length, address, PORT);
-            DatagramSocket socket = new DatagramSocket();
-            socket.send(packet);
-            socket.close();
-
-            Log.d(TAG, "Magic Packet send Success...");
-            return true;
-        }
-        catch (Exception e) {
-            Log.d(TAG, "Magic Packet send Failed...");
-            return false;
-        }
+        }).start();
     }
 
     private static byte[] getMacBytes(String macStr) throws IllegalArgumentException {
