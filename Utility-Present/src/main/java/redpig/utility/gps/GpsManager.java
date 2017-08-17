@@ -52,8 +52,8 @@ public class GpsManager {
 	/**
 	 *
 	 * 요약 : GPS 수신을 시작합니다.
-	 * @param minTime 얼만큼의 시간을 주기로 GPS를 수신할지
-	 * @param minDistance 얼만큼의 거리가 이동되었을때 GPS 정보를 수신할지
+	 * @param minTime 얼만큼의 시간을 주기로 GPS를 수신할지 (밀리초)
+	 * @param minDistance 얼만큼의 거리가 이동되었을때 GPS 정보를 수신할지 (1 = 1미터)
 	 * @param updateFlag true : 지속적으로 위치정보를 수신받음 false : 한번만 위치정보를 수신받음
 	 */
 	public void startGpsService(final long minTime, final float minDistance, boolean updateFlag) {

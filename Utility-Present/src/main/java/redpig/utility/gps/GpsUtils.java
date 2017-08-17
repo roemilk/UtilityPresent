@@ -18,13 +18,11 @@ import java.util.Locale;
  * @설명 : gps 관련 유틸리티
  */
 public class GpsUtils {
-	
-	
 	/**
 	 * 
 	 * 요약 : 현재 GPS를 사용할수 있는지 여부를 리턴한다.
 	 * @param context
-	 * @return
+	 * @return boolean true:사용가능 false:사용불가능
 	 */
 	public static boolean getGpsState(Context context) {
 		LocationManager locManager = (LocationManager)context.getSystemService(Context.LOCATION_SERVICE);
@@ -39,9 +37,9 @@ public class GpsUtils {
 	 * 
 	 * 요약 : 위도 경도를 기준으로 주소값 시/구/동 형태의 문자열 리스트로 반환한다. 
 	 * @param context
-	 * @param lat
-	 * @param lng
-	 * @return
+	 * @param lat 위도
+	 * @param lng 경도
+	 * @return 주소 문자열
 	 */
 	public static ArrayList<String> getFindAddressArray(Context context, double lat, double lng) {
 			ArrayList<String> addressArray = new ArrayList<String>();
@@ -71,9 +69,9 @@ public class GpsUtils {
 	 * 
 	 * 요약 : 위도 경도를 기준으로 주소값 문자열 전체를 반환한다.
 	 * @param context
-	 * @param lat
-	 * @param lng
-	 * @return
+	 * @param lat 위도
+	 * @param lng 경도
+	 * @return 주소 문자열
 	 */
 	public static String getFindAddressFullString(Context context, double lat, double lng) {
 		String addressResult = null;

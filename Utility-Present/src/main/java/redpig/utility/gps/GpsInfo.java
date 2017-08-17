@@ -45,18 +45,34 @@ public class GpsInfo {
 		this.longitude = longitude;
 	}
 
+	/**
+	 * 요약 : 속도를 반환합니다.
+	 * @return
+     */
 	public float getSpeed() {
 		return speed;
 	}
 
+	/**
+	 * 요약 : 속도를 지정합니다.
+	 * @param speed
+     */
 	public void setSpeed(float speed) {
 		this.speed = speed;
 	}
 
+	/**
+	 * 각도를 반환합니다.
+	 * @return
+     */
 	public float getBearing() {
 		return bearing;
 	}
 
+	/**
+	 * 각도를 지정합니다.
+	 * @param bearing
+     */
 	public void setBearing(float bearing) {
 		this.bearing = bearing;
 	}
