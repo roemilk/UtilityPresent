@@ -9,6 +9,9 @@ package redpig.utility.gps;
 public class GpsInfo {
 	private double latitude;
 	private double longitude;
+	private float speed;
+	private float bearing;
+
 	/**
 	 * 
 	 * 요약 : 위도를 반환합니다. 
@@ -41,6 +44,20 @@ public class GpsInfo {
 	public void setLongitude(double longitude) {
 		this.longitude = longitude;
 	}
-	
-	
+
+	public float getSpeed() {
+		return speed;
+	}
+
+	public void setSpeed(float speed) {
+		this.speed = speed;
+	}
+
+	public float getBearing() {
+		return bearing;
+	}
+
+	public void setBearing(float bearing) {
+		this.bearing = bearing;
+	}
 }

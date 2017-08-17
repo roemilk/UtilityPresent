@@ -5,7 +5,7 @@ publish {
     userOrg = 'redpig'
     groupId = 'redpig.utilitypresent'
     artifactId = 'Utility-Present'
-    publishVersion = '0.2.2'
+    publishVersion = '0.2.5'
     desc = 'MagicPacket Exception Log add.. boolean return type add..'
     website = 'https://bintray.com/redpig/maven/redpig-Utility'
 }

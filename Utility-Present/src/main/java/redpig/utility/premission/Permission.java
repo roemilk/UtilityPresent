@@ -9,7 +9,7 @@ import android.support.v4.content.ContextCompat;
 
 /**
  * Created by Kim YoungHun on 2017-01-23.
- * 퍼미션 체크와 오픈 관련된 기능을 모아둔 클래스
+ * 퍼미션 체크와 퍼미션 오픈 관련된 기능을 모아둔 클래스
  */
 public class Permission {
     private static final String TAG = "Permission";

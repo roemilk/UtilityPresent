@@ -9,6 +9,6 @@ public interface GpsInterface {
 		 * @param lat
 		 * @param lon
 		 */
-		public void updateGpsInfo(double lat, double lon);
+		public void updateGpsInfo(GpsInfo gpsInfo);
 	}
 }
