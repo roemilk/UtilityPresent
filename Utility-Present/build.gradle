@@ -5,8 +5,8 @@ publish {
     userOrg = 'redpig'
     groupId = 'redpig.utilitypresent'
     artifactId = 'Utility-Present'
-    publishVersion = '0.2.5'
-    desc = 'MagicPacket Exception Log add.. boolean return type add..'
+    publishVersion = '0.2.8'
+    desc = 'GpsManager modify'
     website = 'https://bintray.com/redpig/maven/redpig-Utility'
 }
 

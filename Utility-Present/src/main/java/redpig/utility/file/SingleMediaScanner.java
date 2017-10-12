@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package redpig.utility.file;
 
@@ -13,7 +13,7 @@ import java.io.File;
 import java.io.FilenameFilter;
 
 /**
- * 
+ *
  * @작성자 KimYoungHun
  * @날짜 : 2014. 7. 21.
  * @설명 : 미디어 스캐닝을 실시한다.
@@ -23,9 +23,9 @@ class SingleMediaScanner implements MediaScannerConnectionClient {
 
 	private MediaScannerConnection mMs;
 	private File mFile;
-	
+
 	/**
-	 * 
+	 *
 	 * @param context 컨텍스트
 	 * @param path 미디어 스캐닝 대상 폴더
 	 */
@@ -35,7 +35,7 @@ class SingleMediaScanner implements MediaScannerConnectionClient {
 		this.mMs = new MediaScannerConnection(context, this);
 		mMs.connect();
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see android.media.MediaScannerConnection.MediaScannerConnectionClient#onMediaScannerConnected()
 	 */
@@ -49,12 +49,14 @@ class SingleMediaScanner implements MediaScannerConnectionClient {
 				return filename.endsWith(".jpg") || filename.endsWith(".png") || filename.endsWith(".bmp") || filename.endsWith(".mp4") || filename.endsWith(".mov") || filename.endsWith(".avi"); //대상 확장자 명
 			}
 		});
-		
-		for(File file:fileNames) {
-			String fileName = file.getName();
 
-			Log.i("FILE_NAME", fileName);
-			mMs.scanFile(file.getAbsolutePath(), null);
+		if(fileNames != null){
+			for(File file:fileNames) {
+				String fileName = file.getName();
+
+				Log.i("FILE_NAME", fileName);
+				mMs.scanFile(file.getAbsolutePath(), null);
+			}
 		}
 	}
 

@@ -37,4 +37,15 @@ public class UIConvertUtils {
         float dp = px / (metrics.densityDpi / 160f);
         return dp;
     }
+
+    /**
+     *
+     * @param context
+     * @param dimenRes
+     * @return Dimen에 정의된 DP수치를 변환하여 리턴한다.
+     */
+    public static int convertDimenToDp(int dimenRes, Context context){
+        int convertDP = (int)context.getResources().getDimension(dimenRes);
+        return convertDP;
+    }
 }
